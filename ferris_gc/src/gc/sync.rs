@@ -1,6 +1,9 @@
-use std::alloc::{alloc, dealloc, Layout};
-use std::mem::transmute;
-use std::cell::{Cell, RefCell};
+use alloc::alloc::{alloc, dealloc, Layout};
+use core::mem::transmute;
+use core::cell::{Cell, RefCell};
+#[cfg(feature = "no_std")]
+use hashbrown::HashMap;
+#[cfg(not(feature = "no_std"))]
 use std::collections::HashMap;
 use std::ops::{Deref, DerefMut};
 use std::sync::{Mutex, RwLock};
